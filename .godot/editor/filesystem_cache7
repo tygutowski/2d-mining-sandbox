@@ -1,0 +1,25 @@
+0b7126e0c6e86d3ec295a72f5aa6e0bd
+::res://::1673306936
+::res://Blocks/::1673307049
+blocks-tileset.png::CompressedTexture2D::6792296888091676101::1673293597::1673293599::1::::<><>::
+Item.gd::GDScript::-1::1673301897::0::1::::<>CharacterBody2D<>::
+Item.tscn::PackedScene::5654082452598195368::1673307049::0::1::::<><>::res://Blocks/Item.gd<>uid://c31iew2tw4xpd<>uid://c1uvdoc4l8817
+mining-tileset.png::CompressedTexture2D::7228760472142095706::1673293763::1673293764::1::::<><>::
+Pop.mp3::AudioStreamMP3::6640320011036223984::1673290435::1673301198::1::::<><>::
+Tile.gd::GDScript::-1::1673307106::0::1::::Tile<>Resource<>::
+::res://Game/::1673307050
+LevelData.gd::GDScript::-1::1673300134::0::1::::<>Node<>::
+Main.tscn::PackedScene::1043975422313913757::1673307106::0::1::::<><>::uid://c31iew2tw4xpd<>uid://da8wvm677db1k<>uid://dshp4uae0cui7
+::res://Player/::1673307049
+hand.png::CompressedTexture2D::2992518477302501560::1673293503::1673293599::1::::<><>::
+player-spritesheet.png::CompressedTexture2D::4793491029803368027::1673293498::1673293599::1::::<><>::
+Player.gd::GDScript::-1::1673301011::0::1::::<>CharacterBody2D<>::
+Player.tscn::PackedScene::8438075474439298464::1673307049::0::1::::<><>::uid://cakadkbp1g540<>res://Player/Player.gd<>uid://k3ji5ich0ds3<>uid://bivulvqiifhsq
+::res://Weapons/::1673307049
+Bullet.gd::GDScript::-1::1673307018::0::1::::<>Node2D<>::
+bullet.png::CompressedTexture2D::7862790159499884339::1673293381::1673293599::1::::<><>::
+Bullet.tscn::PackedScene::-1::1673293147::0::1::::<><>::res://Weapons/Bullet.gd<>uid://dka2af71c2nyx
+gun.png::CompressedTexture2D::4655173301211466421::1673295687::1673293599::1::::<><>::
+Gun.tscn::PackedScene::760253340940286468::1673307049::0::1::::<><>::uid://b7laa254k232x
+Laser Loop.wav::AudioStreamWAV::5318456257985447815::1673290435::1673293163::1::::<><>::
+Laser Rifle Shot.wav::AudioStreamWAV::1289079885895209167::1673290435::1673293163::1::::<><>::

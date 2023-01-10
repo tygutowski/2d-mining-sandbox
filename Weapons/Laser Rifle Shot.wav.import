@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://smo7s0anldr0"
+path="res://.godot/imported/Laser Rifle Shot.wav-4336ca80620c28e45a120bbfab4378d1.sample"
+
+[deps]
+
+source_file="res://Weapons/Laser Rifle Shot.wav"
+dest_files=["res://.godot/imported/Laser Rifle Shot.wav-4336ca80620c28e45a120bbfab4378d1.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

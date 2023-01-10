@@ -1,0 +1,6 @@
+res://Game/Main.tscn
+res://Weapons/Bullet.gd
+res://Player/Player.tscn
+res://Blocks/Item.tscn
+res://Weapons/Gun.tscn
+res://Blocks/Tile.gd
