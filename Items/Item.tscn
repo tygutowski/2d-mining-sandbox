@@ -1,8 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://cms46agg415cm"]
+[gd_scene load_steps=6 format=3 uid="uid://cbfbipy2aj5od"]
 
-[ext_resource type="Script" path="res://Blocks/Item.gd" id="1_xmu8s"]
-[ext_resource type="Texture2D" uid="uid://c31iew2tw4xpd" path="res://Blocks/blocks-tileset.png" id="2_ui7t2"]
-[ext_resource type="AudioStream" uid="uid://c1uvdoc4l8817" path="res://Blocks/Pop.mp3" id="3_q4gna"]
+[ext_resource type="Script" path="res://Items/Item.gd" id="1_p1mn2"]
+[ext_resource type="Texture2D" uid="uid://c31iew2tw4xpd" path="res://Blocks/blocks-tileset.png" id="2_5r5kc"]
+[ext_resource type="AudioStream" uid="uid://c1uvdoc4l8817" path="res://Blocks/Pop.mp3" id="3_lveac"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a8mad"]
 size = Vector2(2, 2)
@@ -12,7 +12,7 @@ size = Vector2(2, 2)
 [node name="Item" type="CharacterBody2D"]
 collision_layer = 0
 collision_mask = 4
-script = ExtResource("1_xmu8s")
+script = ExtResource("1_p1mn2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_a8mad")
@@ -20,9 +20,7 @@ shape = SubResource("RectangleShape2D_a8mad")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 scale = Vector2(0.8, 0.8)
-texture = ExtResource("2_ui7t2")
-hframes = 2
-vframes = 2
+texture = ExtResource("2_5r5kc")
 
 [node name="Area2D" type="Area2D" parent="." groups=["item"]]
 
@@ -30,6 +28,6 @@ vframes = 2
 shape = SubResource("CircleShape2D_nwac2")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_q4gna")
+stream = ExtResource("3_lveac")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

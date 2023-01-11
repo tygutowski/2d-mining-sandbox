@@ -8,10 +8,20 @@
 
 config_version=5
 
+_global_script_classes=[{
+"base": "Object",
+"class": &"Tile",
+"language": &"GDScript",
+"path": "res://Blocks/Tile.gd"
+}]
+_global_script_class_icons={
+"Tile": ""
+}
+
 [application]
 
 config/name="BOOM"
-run/main_scene="res://Game/Main.tscn"
+run/main_scene="res://Game/Main Menu.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
 
 [autoload]

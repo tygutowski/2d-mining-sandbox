@@ -1,13 +1,15 @@
-class_name Tile extends Resource
+class_name Tile extends Object
 
 var tilemap
 var max_health = 100
 var health = max_health
 var damaged = false
+
+var tile_name
+var tile_id
 var position_in_tilemap = Vector2i(0, 0)
 var position_in_atlas = Vector2i(0, 0)
 var frames_since_mined_or_repaired = 0
-var rotation
 
 
 func process_tile():
@@ -30,13 +32,13 @@ func update_tile_cracks():
 	var perc = 1.0*health/max_health
 	print(perc)
 	if perc <= .25: # [0, 50]
-		tilemap.set_cell(1, position_in_tilemap, 1, Vector2(1,1))
+		tilemap.set_cell(1, position_in_tilemap, 999, Vector2(1,1))
 	elif perc <= .5:
-		tilemap.set_cell(1, position_in_tilemap, 1, Vector2(0,1))
+		tilemap.set_cell(1, position_in_tilemap, 999, Vector2(0,1))
 	elif perc <= .75:
-		tilemap.set_cell(1, position_in_tilemap, 1, Vector2(1,0))
+		tilemap.set_cell(1, position_in_tilemap, 999, Vector2(1,0))
 	elif perc < 1:
-		tilemap.set_cell(1, position_in_tilemap, 1, Vector2(0,0))
+		tilemap.set_cell(1, position_in_tilemap, 999, Vector2(0,0))
 	elif perc == 1:
 		tilemap.set_cell(1, position_in_tilemap, -1)
 		LevelData.tile_list.erase(self)
@@ -49,19 +51,20 @@ func take_damage(damage):
 		break_tile()
 
 func break_tile():
-	var item = load("res://Blocks/Item.tscn").instantiate()
-	tilemap.get_tree().get_first_node_in_group("level").add_child(item)
-	item.global_position = tilemap.map_to_local(position_in_tilemap)
-	item.get_node("Sprite2D").frame_coords = position_in_atlas
-	var is_item = tilemap.get_cell_tile_data(0, position_in_tilemap).get_custom_data("is item")
-	if is_item: # is an item
-	
-	else: # is a block
+
+	var item
 	var drop = tilemap.get_cell_tile_data(0, position_in_tilemap).get_custom_data("drops") # items name
-	var item_drop = load("res://Items/" + drop).instantiate()
+	if drop == "self": # Drops respective block
+		item = load("res://Items/Item.tscn").instantiate()
+		item.item_id = tile_id
+		item.get_node("Sprite2D").hframes = tilemap.tile_set.get_source(tile_id).get_tiles_count()
+		item.get_node("Sprite2D").texture = load("res://Blocks/"+tile_name+"-tileset.png")
+		item.get_node("Sprite2D").frame_coords = position_in_atlas
+		item.global_position = tilemap.map_to_local(position_in_tilemap)
+		tilemap.get_tree().get_first_node_in_group("level").add_child(item)
+	else:
+		print("not implemented")
 	tilemap.set_cell(1, position_in_tilemap, -1)
 	tilemap.set_cell(0, position_in_tilemap, -1)
 	LevelData.tile_list.erase(self)
 
-func _ready():
-	rotation = randi_range(1,4) * 90

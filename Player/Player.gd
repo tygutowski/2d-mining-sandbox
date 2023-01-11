@@ -68,11 +68,6 @@ func _process(delta):
 	else:
 		gun.get_node("Line2D").visible = false
 		gun.get_node("RayCast2D").enabled = false
-	
-	if Input.is_action_just_pressed("bomb"):
-		var bomb = load("res://Bomb.tscn").instantiate()
-		bomb.global_position = hand.global_position
-		get_parent().add_child(bomb)
 
 func make_tile(pos, tilemap):
 	var tile = Tile.new()
@@ -81,6 +76,8 @@ func make_tile(pos, tilemap):
 		if pos == cell:
 			cell_exists = true
 	if cell_exists:
+		tile.tile_name = tilemap.get_cell_tile_data(0, pos).get_custom_data("block name")
+		tile.tile_id = tilemap.get_cell_source_id(0,pos)
 		tile.max_health = tilemap.get_cell_tile_data(0, pos).get_custom_data("health")
 		tile.health = tilemap.get_cell_tile_data(0, pos).get_custom_data("health")
 		tile.position_in_tilemap = pos
@@ -91,3 +88,6 @@ func make_tile(pos, tilemap):
 
 func manipulate_tile(tile):
 	tile.take_damage(10)
+
+func add_to_inventory(item):
+	item.queue_free()

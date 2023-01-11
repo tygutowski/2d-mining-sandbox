@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://cbrjrvgjpkdlw"]
+
+[ext_resource type="Script" path="res://Game/Main Menu.gd" id="1_0va2x"]
+
+[node name="Button" type="Button"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 283.0
+offset_top = 202.0
+offset_right = -283.0
+offset_bottom = -223.0
+size_flags_horizontal = 4
+text = "generate world!"
+script = ExtResource("1_0va2x")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

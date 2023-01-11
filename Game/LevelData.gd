@@ -1,6 +1,7 @@
 extends Node
 
-@onready var tilemap = get_node("../Main/Level/TileMap")
+enum blocks {AIR,DIRT,STONE,IRON_ORE}
+@onready var tilemap = get_tree().get_first_node_in_group("tilemap")
 var tile_list = []
 var gravity = 500
 

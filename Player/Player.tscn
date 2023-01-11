@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dshp4uae0cui7"]
+[gd_scene load_steps=14 format=3 uid="uid://dshp4uae0cui7"]
 
 [ext_resource type="Texture2D" uid="uid://cakadkbp1g540" path="res://Player/player-spritesheet.png" id="1_gcu75"]
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_sk2ix"]
@@ -71,7 +71,10 @@ nodes/run_or_idle/node = SubResource("AnimationNodeTransition_xxt0e")
 nodes/run_or_idle/position = Vector2(1480, 260)
 node_connections = [&"output", 0, &"run_or_idle", &"run_or_idle", 0, &"run", &"run_or_idle", 1, &"idle"]
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_8utio"]
+radius = 20.025
+
+[node name="CharacterBody2D" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_sk2ix")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -83,6 +86,7 @@ texture_filter = 1
 texture = ExtResource("1_gcu75")
 hframes = 8
 vframes = 2
+frame = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -104,3 +108,8 @@ texture = ExtResource("4_tv7kh")
 
 [node name="Gun" parent="HandPivot/Hand" instance=ExtResource("3_kchc7")]
 position = Vector2(2, -2)
+
+[node name="pickup radius" type="Area2D" parent="." groups=["player_area"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="pickup radius"]
+shape = SubResource("CircleShape2D_8utio")
