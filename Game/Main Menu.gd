@@ -6,15 +6,6 @@ var width = 200
 var height = 200
 var lights = []
 
-var finished = -1
-
-func _physics_process(delta):
-	if finished == 0:
-		for light in lights:
-			var positions = light.check_all_positions()
-			print(positions)
-	finished -= 1
-
 func _ready():
 	noise = FastNoiseLite.new()
 	noise.noise_type = 0
@@ -50,10 +41,14 @@ func _on_pressed(): # Generate the world!
 	light.global_position = tilemap.map_to_local(Vector2(20,20))# + Vector2(LevelData.tile_size/2, LevelData.tile_size/2)
 	tilemap.get_parent().add_child(light)
 	lights.append(light)
-	gen_finished()
+	await get_tree().physics_frame
+	await get_tree().physics_frame
+	update_lights()
 
-func gen_finished():
-	finished = 5
+func update_lights():
+	for light in lights:
+		var positions = light.check_all_positions()
+		print(positions)
 
 func random_tile(tile_id):
 	if tile_id == -1:

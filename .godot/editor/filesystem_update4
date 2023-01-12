@@ -1,11 +1,9 @@
 res://Light.tscn
 res://Player/Player.gd
-res://Game/Main.tscn
-res://Items/Item.tscn
-res://Game/Main Menu.gd
-res://Game/Main Menu.tscn
-res://Game/LevelData.gd
 res://Game/Tileset.tres
+res://Game/Main Menu.gd
+res://Items/Item.tscn
 res://Weapons/Gun.tscn
+res://Game/Main.tscn
+res://Game/Main Menu.tscn
 res://Torch.tscn
-res://Light.gd
