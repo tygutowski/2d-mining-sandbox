@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://o4yef21c61a4"]
+[gd_scene load_steps=17 format=3 uid="uid://o4yef21c61a4"]
 
 [ext_resource type="Script" path="res://Blocks/Tile.gd" id="1_eq0eg"]
 [ext_resource type="Texture2D" uid="uid://da8wvm677db1k" path="res://Blocks/mining-tileset.png" id="2_8q7pj"]
@@ -6,6 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://bdj2i23ymtx58" path="res://Blocks/dirt-tileset.png" id="3_658ud"]
 [ext_resource type="PackedScene" uid="uid://dshp4uae0cui7" path="res://Player/Player.tscn" id="3_e7doq"]
 [ext_resource type="Texture2D" uid="uid://bkv1xb1r1so6k" path="res://Blocks/iron-ore-tileset.png" id="4_gkktc"]
+[ext_resource type="Texture2D" uid="uid://s0rerrddiicr" path="res://Blocks/stone-background-tileset.png" id="5_80nf7"]
+[ext_resource type="Texture2D" uid="uid://c51vdcww3wtyc" path="res://UI/black-box-export.png" id="8_7bnmk"]
+[ext_resource type="PackedScene" uid="uid://s0n06kgyuuvd" path="res://Light.tscn" id="9_6t285"]
+[ext_resource type="PackedScene" uid="uid://b525enuiy2v2p" path="res://Torch.tscn" id="10_a4jwi"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mpeyk"]
 texture = ExtResource("3_658ud")
@@ -39,11 +43,26 @@ texture_region_size = Vector2i(8, 8)
 3:0/0/custom_data_2 = "self"
 3:0/0/custom_data_3 = "dirt"
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_207oj"]
+texture = ExtResource("5_80nf7")
+texture_region_size = Vector2i(8, 8)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+2:0/0 = 0
+2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_0/angular_velocity = 0.0
+3:0/0 = 0
+3:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:0/0/physics_layer_0/angular_velocity = 0.0
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yoebl"]
 texture = ExtResource("2_lrivv")
 texture_region_size = Vector2i(8, 8)
 0:0/0 = 0
-0:0/0/terrain = 1
 0:0/0/probability = 0.1
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
@@ -52,7 +71,6 @@ texture_region_size = Vector2i(8, 8)
 0:0/0/custom_data_2 = "self"
 0:0/0/custom_data_3 = "stone"
 2:0/0 = 0
-2:0/0/terrain = 1
 2:0/0/probability = 0.1
 2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:0/0/physics_layer_0/angular_velocity = 0.0
@@ -61,7 +79,6 @@ texture_region_size = Vector2i(8, 8)
 2:0/0/custom_data_2 = "self"
 2:0/0/custom_data_3 = "stone"
 1:0/0 = 0
-1:0/0/terrain = 1
 1:0/0/probability = 0.8
 1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:0/0/physics_layer_0/angular_velocity = 0.0
@@ -81,7 +98,6 @@ texture_region_size = Vector2i(8, 8)
 texture = ExtResource("4_gkktc")
 texture_region_size = Vector2i(8, 8)
 0:0/0 = 0
-0:0/0/terrain = 2
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
@@ -122,12 +138,27 @@ custom_data_layer_2/type = 4
 custom_data_layer_3/name = "block name"
 custom_data_layer_3/type = 4
 sources/999 = SubResource("TileSetAtlasSource_8nkmo")
-sources/2 = SubResource("TileSetAtlasSource_yoebl")
-sources/1 = SubResource("TileSetAtlasSource_mpeyk")
+sources/1002 = SubResource("TileSetAtlasSource_207oj")
 sources/3 = SubResource("TileSetAtlasSource_2iho6")
+sources/1 = SubResource("TileSetAtlasSource_mpeyk")
+sources/2 = SubResource("TileSetAtlasSource_yoebl")
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_eq0eg")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_7bnmk")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0, 0, 0, 1)
 
 [node name="Level" type="Node2D" parent="." groups=["level"]]
 
@@ -144,10 +175,37 @@ layer_1/y_sort_enabled = true
 layer_1/y_sort_origin = 0
 layer_1/z_index = 0
 layer_1/tile_data = PackedInt32Array()
+layer_2/name = "background"
+layer_2/enabled = true
+layer_2/modulate = Color(1, 1, 1, 1)
+layer_2/y_sort_enabled = true
+layer_2/y_sort_origin = 0
+layer_2/z_index = -1
+layer_2/tile_data = PackedInt32Array()
 
 [node name="CharacterBody2D" parent="Level" instance=ExtResource("3_e7doq")]
-position = Vector2(-1, -18)
+position = Vector2(248, 192)
+
+[node name="PointLight2D" parent="Level/CharacterBody2D" instance=ExtResource("9_6t285")]
 
 [node name="Camera2D" type="Camera2D" parent="Level/CharacterBody2D"]
 current = true
 zoom = Vector2(4, 4)
+
+[node name="Node2D" parent="." instance=ExtResource("10_a4jwi")]
+position = Vector2(176, 141)
+
+[node name="Node2D2" parent="." instance=ExtResource("10_a4jwi")]
+position = Vector2(325, 141)
+
+[node name="Node2D3" parent="." instance=ExtResource("10_a4jwi")]
+position = Vector2(145, 271)
+
+[node name="Node2D4" parent="." instance=ExtResource("10_a4jwi")]
+position = Vector2(259, 233)
+
+[node name="Node2D5" parent="." instance=ExtResource("10_a4jwi")]
+position = Vector2(371, 268)
+
+[node name="Node2D6" parent="." instance=ExtResource("10_a4jwi")]
+position = Vector2(360, 198)

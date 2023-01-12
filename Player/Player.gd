@@ -87,7 +87,7 @@ func make_tile(pos, tilemap):
 		manipulate_tile(tile)
 
 func manipulate_tile(tile):
-	tile.take_damage(10)
+	tile.take_damage(100)
 
 func add_to_inventory(item):
 	item.queue_free()

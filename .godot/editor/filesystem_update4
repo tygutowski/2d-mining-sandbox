@@ -1,11 +1,10 @@
 res://Player/Player.tscn
-res://Blocks/Item.tscn
+res://Player/Player.gd
+res://Items/Item.tscn
 res://Weapons/Gun.tscn
 res://Game/Main.tscn
-res://Player/Player.gd
-res://Blocks/Tile.gd
-res://Items/Item.tscn
 res://Game/Main Menu.tscn
 res://Game/Main Menu.gd
 res://Game/LevelData.gd
-res://Items/Item.gd
+res://Torch.tscn
+res://Light.tscn

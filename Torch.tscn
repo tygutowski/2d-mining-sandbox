@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://b525enuiy2v2p"]
+
+[ext_resource type="Texture2D" uid="uid://cq6y2obwexbr1" path="res://Blocks/torch.png" id="1_saln5"]
+[ext_resource type="PackedScene" uid="uid://s0n06kgyuuvd" path="res://Light.tscn" id="2_om2gh"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_saln5")
+
+[node name="PointLight2D" parent="." instance=ExtResource("2_om2gh")]
