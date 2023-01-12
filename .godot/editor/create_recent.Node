@@ -1,3 +1,5 @@
+RayCast2D
+ShapeCast2D
 Sprite2D
 TextureRect
 CanvasLayer

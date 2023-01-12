@@ -1,7 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://s0n06kgyuuvd"]
+[gd_scene load_steps=3 format=3 uid="uid://s0n06kgyuuvd"]
 
 [ext_resource type="Texture2D" uid="uid://c5nsefu0ycjrr" path="res://UI/light.png" id="1_rej03"]
+[ext_resource type="Script" path="res://Light.gd" id="2_ia7wp"]
 
 [node name="PointLight2D" type="PointLight2D"]
 blend_mode = 2
 texture = ExtResource("1_rej03")
+script = ExtResource("2_ia7wp")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(1000, 0)
+collision_mask = 2
+hit_from_inside = true
