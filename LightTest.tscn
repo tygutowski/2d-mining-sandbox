@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=3 uid="uid://bpm3b2ojjpdoj"]
+
+[ext_resource type="Texture2D" uid="uid://ies2ws4k71gv" path="res://Blocks/dirt-tilemap.png" id="1_cuomw"]
+[ext_resource type="Shader" path="res://LightTest.gdshader" id="2_gegsv"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jwgii"]
+shader = ExtResource("2_gegsv")
+
+[sub_resource type="Shader" id="Shader_eod81"]
+code = "shader_type canvas_item;
+
+uniform int pixelSize = 4;
+
+void fragment()
+{
+	
+	ivec2 size = textureSize(TEXTURE, 0);
+	
+	int xRes = size.x;
+	int yRes = size.y;
+	
+	float xFactor = float(xRes) / float(pixelSize);
+	float yFactor = float(yRes) / float(pixelSize);
+	
+	float grid_uv_x = round(UV.x * xFactor) / xFactor;
+	float grid_uv_y = round(UV.y * yFactor) / yFactor;
+	
+	vec4 text = texture(TEXTURE, vec2(grid_uv_x, grid_uv_y));
+	
+	COLOR = text;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_owlig"]
+shader = SubResource("Shader_eod81")
+shader_parameter/pixelSize = 16
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lbjcd"]
+shader = ExtResource("2_gegsv")
+
+[node name="Node2D" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_jwgii")
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+material = SubResource("ShaderMaterial_owlig")
+texture = ExtResource("1_cuomw")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+material = SubResource("ShaderMaterial_lbjcd")
+color = Color(0.396078, 0.396078, 0.396078, 1)

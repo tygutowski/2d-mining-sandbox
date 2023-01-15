@@ -19,9 +19,8 @@ func _on_pressed(): # Generate the world!
 	var game = load("res://Game/Main.tscn").instantiate()
 	get_parent().add_child(game)
 	tilemap = game.get_node("Level/TileMap")
-	for x in range(width):
-		for y in range(height):
-
+	for x in range(-width/2, width/2):
+		for y in range(-height/2, height/2):
 			if noise.get_noise_2d(x,y) > 0:
 				# empty
 				if randi_range(1, 100) == -1:
@@ -35,20 +34,15 @@ func _on_pressed(): # Generate the world!
 			else:
 				gen_bg(x, y, LevelData.backgrounds['STONE'])
 				gen_tile(x, y, LevelData.blocks['STONE'])
-	gen_tile(20, 20, LevelData.backgrounds['AIR'])
-	gen_tile(20, 20, LevelData.blocks['AIR'])
-	var light = load("res://Light.tscn").instantiate()
-	light.global_position = tilemap.map_to_local(Vector2(20,20))# + Vector2(LevelData.tile_size/2, LevelData.tile_size/2)
-	tilemap.get_parent().add_child(light)
-	lights.append(light)
-	await get_tree().physics_frame
-	await get_tree().physics_frame
-	update_lights()
+	gen_bg(28, 20, LevelData.backgrounds['AIR'])
+	gen_tile(28, 20, LevelData.blocks['AIR'])
 
-func update_lights():
-	for light in lights:
-		var positions = light.check_all_positions()
-		print(positions)
+func is_empty(x,y):
+	var pos = Vector2(x, y)
+	var tile_id = tilemap.get_cell_source_id(0, pos)
+	var bg_id = tilemap.get_cell_source_id(2, pos)
+	if (tile_id == -1) and (bg_id == -1):
+		pass
 
 func random_tile(tile_id):
 	if tile_id == -1:

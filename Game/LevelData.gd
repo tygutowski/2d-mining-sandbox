@@ -1,6 +1,7 @@
 extends Node
 
 var tile_size = 8
+var resolution = Vector2(320, 180)
 
 var blocks = {
 	'AIR': -1,
@@ -13,6 +14,7 @@ var backgrounds = {
 	'AIR': -1,
 	'STONE': 1002
 	}
+
 @onready var tilemap = get_tree().get_first_node_in_group("tilemap")
 var tile_list = []
 var gravity = 500

@@ -30,7 +30,6 @@ func process_tile():
 
 func update_tile_cracks():
 	var perc = 1.0*health/max_health
-	print(perc)
 	if perc <= .25: # [0, 50]
 		tilemap.set_cell(1, position_in_tilemap, 999, Vector2(1,1))
 	elif perc <= .5:
