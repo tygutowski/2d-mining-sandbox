@@ -1,9 +1,9 @@
-res://Game/Main.tscn
+res://Items/Item.tscn
 res://Player/Player.gd
 res://Game/Tileset.tres
-res://Items/Item.tscn
 res://Weapons/Gun.tscn
 res://Game/Main Menu.tscn
 res://Torch.tscn
 res://Light.tscn
 res://LightTest.tscn
+res://Game/Main.tscn

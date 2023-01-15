@@ -8,14 +8,17 @@ var weapon_range = 100
 const SPEED = 150.0
 const JUMP_VELOCITY = -200.0
 
+func _ready():
+	update_lights()
+
 func update_lights():
 	var tilemap = get_tree().get_first_node_in_group("tilemap")
 	var bot_right = tilemap.local_to_map(global_position + LevelData.resolution/2) + Vector2i(10, 10)
 	var top_left = tilemap.local_to_map(global_position - LevelData.resolution/2) - Vector2i(10, 10)
-	for x in range(top_left.x, bot_right.x):
+	for x in range(top_left.x, bot_right.x): # whiten whole screen
 		for y in range(top_left.y, bot_right.y):
 			tilemap.set_cell(3, Vector2(x, y), 0, Vector2(7,0))
-	for x in range(top_left.x, bot_right.x):
+	for x in range(top_left.x, bot_right.x): # light areas
 		for y in range(top_left.y, bot_right.y):
 			update_lighting_at(x, y, 7) # 30, 24
 
@@ -27,11 +30,12 @@ func update_lighting_at(j, k, strength):
 		var bot_right = Vector2i(j+strength, k+strength)
 		for x in range(top_left.x, bot_right.x):
 			for y in range(top_left.y, bot_right.y):
-				var dist = abs(j-x) + abs(k-y)
-				if dist < strength: # if its within manhattan range
-					for z in dist: 
-						var darkness = tilemap.get_cell_atlas_coords(3, Vector2(x, y)).x
-						tilemap.set_cell(3, Vector2(x, y), 0, Vector2i(darkness-1,0))
+				var distance = abs(j-x) + abs(k-y) # distance to core
+				if distance < strength:
+					var light = strength - distance
+					for i in range(light):
+						var darkness = tilemap.get_cell_atlas_coords(3, Vector2i(x,y)).x - light
+						tilemap.set_cell(3, Vector2i(x, y), 0, Vector2i(darkness + 1,0))
 func _physics_process(delta):
 	# Add the gravity.
 	#update_lights()
@@ -73,6 +77,8 @@ func _process(delta):
 	elif (gun.rotation >= -3.14159265 && gun.rotation <= -1.57079633): # [-2, -1]
 		gun.get_node("Sprite").flip_v = true
 	if Input.is_action_just_pressed("reload"):
+		var tilemap = get_tree().get_first_node_in_group("tilemap")
+		tilemap.set_cell(0, tilemap.local_to_map(get_global_mouse_position()), 4, Vector2(0,0))
 		update_lights()
 	if Input.is_action_pressed("shoot"):
 		gun.get_node("Line2D").visible = true
@@ -94,6 +100,7 @@ func _process(delta):
 	else:
 		gun.get_node("Line2D").visible = false
 		gun.get_node("RayCast2D").enabled = false
+
 
 func make_tile(pos, tilemap):
 	var tile = Tile.new()
